@@ -37,7 +37,7 @@ func (a Account) Validate() error {
 		return fmt.Errorf("consents is greater than holders length")
 	}
 	if a.Coins != nil && !a.Coins.IsValid() {
-		return fmt.Errorf("coins are nil or invalid")
+		return fmt.Errorf("coins is nil or invalid")
 	}
 
 	return nil
