@@ -8,7 +8,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-type Escrow struct {
+type Transfer struct {
 	Identity uint64 `json:"identity"`
 
 	From  uint64         `json:"from"`
@@ -19,7 +19,7 @@ type Escrow struct {
 	Signers  []sdk.AccAddress `json:"signers"`
 }
 
-func (e Escrow) String() string {
+func (t Transfer) String() string {
 	return fmt.Sprintf(strings.TrimSpace(`
 Identity: %d
 From:     %d
@@ -27,27 +27,27 @@ To:       %s
 Coins:    %s
 Deadline: %s
 Signers:  %s
-`), e.Identity, e.From, e.To, e.Coins, e.Deadline, e.Signers)
+`), t.Identity, t.From, t.To, t.Coins, t.Deadline, t.Signers)
 }
 
-func (e Escrow) Validate() error {
-	if e.Identity == 0 {
+func (t Transfer) Validate() error {
+	if t.Identity == 0 {
 		return fmt.Errorf("identity is zero")
 	}
-	if e.From == 0 {
+	if t.From == 0 {
 		return fmt.Errorf("from is zero")
 	}
-	if e.To == nil || e.To.Empty() {
+	if t.To == nil || t.To.Empty() {
 		return fmt.Errorf("to is nil or empty")
 	}
-	if e.Deadline.IsZero() {
+	if t.Deadline.IsZero() {
 		return fmt.Errorf("deadline is zero")
 	}
-	if e.Signers == nil {
+	if t.Signers == nil {
 		return fmt.Errorf("signers is nil")
 	}
 
 	return nil
 }
 
-type Escrows []Escrow
+type Transfers []Transfer

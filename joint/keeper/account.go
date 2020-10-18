@@ -6,18 +6,18 @@ import (
 	"github.com/exidioco/modules/joint/types"
 )
 
-func (k Keeper) SetCount(ctx sdk.Context, count uint64) {
-	key := types.CountKey
+func (k Keeper) SetAccountsCount(ctx sdk.Context, count uint64) {
+	key := types.AccountsCountKey
 	value := k.cdc.MustMarshalBinaryLengthPrefixed(count)
 
 	store := ctx.KVStore(k.key)
 	store.Set(key, value)
 }
 
-func (k Keeper) GetCount(ctx sdk.Context) (count uint64) {
+func (k Keeper) GetAccountsCount(ctx sdk.Context) (count uint64) {
 	store := ctx.KVStore(k.key)
 
-	key := types.CountKey
+	key := types.AccountsCountKey
 	value := store.Get(key)
 	if value == nil {
 		return 0
@@ -104,20 +104,4 @@ func (k Keeper) Withdraw(ctx sdk.Context, from uint64, to sdk.AccAddress, coins 
 	}
 
 	return k.supply.SendCoinsFromModuleToAccount(ctx, types.ModuleName, to, coins)
-}
-
-func (k Keeper) SendCoinsFromModuleToAccount(ctx sdk.Context, from string, to uint64, coins sdk.Coins) error {
-	if err := k.supply.SendCoinsFromModuleToModule(ctx, from, types.ModuleName, coins); err != nil {
-		return err
-	}
-
-	return k.Add(ctx, to, coins)
-}
-
-func (k Keeper) SendCoinsFromAccountToModule(ctx sdk.Context, from uint64, to string, coins sdk.Coins) error {
-	if err := k.Subtract(ctx, from, coins); err != nil {
-		return err
-	}
-
-	return k.supply.SendCoinsFromModuleToModule(ctx, types.ModuleName, to, coins)
 }

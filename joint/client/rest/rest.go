@@ -10,6 +10,10 @@ func registerQueryRoutes(ctx context.CLIContext, router *mux.Router) {
 		Methods("GET")
 	router.HandleFunc("/joint/accounts/{identity}", queryAccount(ctx)).
 		Methods("GET")
+	router.HandleFunc("/joint/transfers", queryTransfers(ctx)).
+		Methods("GET")
+	router.HandleFunc("/joint/transfers/{identity}", queryTransfer(ctx)).
+		Methods("GET")
 }
 
 func registerTxRoutes(_ context.CLIContext, _ *mux.Router) {

@@ -15,6 +15,10 @@ func NewQuerier(k keeper.Keeper) sdk.Querier {
 			return queryAccount(ctx, req, k)
 		case types.QueryAccounts:
 			return queryAccounts(ctx, req, k)
+		case types.QueryTransfer:
+			return queryTransfer(ctx, req, k)
+		case types.QueryTransfers:
+			return queryTransfers(ctx, req, k)
 		default:
 			return nil, types.ErrorUnknownQuery
 		}

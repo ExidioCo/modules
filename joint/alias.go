@@ -13,53 +13,81 @@ import (
 )
 
 const (
-	EventTypeSetCount    = types.EventTypeSetCount
-	EventTypeSet         = types.EventTypeSet
+	EventTypeCreate      = types.EventTypeCreate
+	EventTypeSend        = types.EventTypeSend
 	EventTypeDeposit     = types.EventTypeDeposit
-	AttributeKeyCount    = types.AttributeKeyCount
+	EventTypeApprove     = types.EventTypeApprove
 	AttributeKeyIdentity = types.AttributeKeyIdentity
 	AttributeKeyConsents = types.AttributeKeyConsents
+	AttributeKeyFrom     = types.AttributeKeyFrom
+	AttributeKeyTo       = types.AttributeKeyTo
+	AttributeKeyCoins    = types.AttributeKeyCoins
+	AttributeKeyDeadline = types.AttributeKeyDeadline
+	AttributeKeyHolder   = types.AttributeKeyHolder
 	ModuleName           = types.ModuleName
 	QuerierRoute         = types.QuerierRoute
 	RouterKey            = types.RouterKey
 	StoreKey             = types.StoreKey
 	QueryAccount         = types.QueryAccount
 	QueryAccounts        = types.QueryAccounts
+	QueryTransfer        = types.QueryTransfer
+	QueryTransfers       = types.QueryTransfers
 )
 
 var (
 	// functions aliases
-	RegisterCodec          = types.RegisterCodec
-	NewGenesisState        = types.NewGenesisState
-	DefaultGenesisState    = types.DefaultGenesisState
-	AccountKey             = types.AccountKey
-	NewMsgCreate           = types.NewMsgCreate
-	NewMsgDeposit          = types.NewMsgDeposit
-	NewQueryAccountParams  = types.NewQueryAccountParams
-	NewQueryAccountsParams = types.NewQueryAccountsParams
-	NewKeeper              = keeper.NewKeeper
-	NewQuerier             = querier.NewQuerier
+	RegisterCodec                   = types.RegisterCodec
+	NewGenesisState                 = types.NewGenesisState
+	DefaultGenesisState             = types.DefaultGenesisState
+	AccountKey                      = types.AccountKey
+	TransferKey                     = types.TransferKey
+	GetTransferForDeadlineKeyPrefix = types.GetTransferForDeadlineKeyPrefix
+	TransferForDeadlineKey          = types.TransferForDeadlineKey
+	NewMsgCreate                    = types.NewMsgCreate
+	NewMsgDeposit                   = types.NewMsgDeposit
+	NewMsgSend                      = types.NewMsgSend
+	NewMsgApprove                   = types.NewMsgApprove
+	NewQueryAccountParams           = types.NewQueryAccountParams
+	NewQueryAccountsParams          = types.NewQueryAccountsParams
+	NewQueryTransferParams          = types.NewQueryTransferParams
+	NewQueryTransfersParams         = types.NewQueryTransfersParams
+	NewKeeper                       = keeper.NewKeeper
+	NewQuerier                      = querier.NewQuerier
 
 	// variable aliases
-	ModuleCdc                = types.ModuleCdc
-	ErrorMarshal             = types.ErrorMarshal
-	ErrorUnmarshal           = types.ErrorUnmarshal
-	ErrorUnknownMessage      = types.ErrorUnknownMessage
-	ErrorUnknownQuery        = types.ErrorUnknownQuery
-	ErrorNegativeCoins       = types.ErrorNegativeCoins
-	ErrorAccountDoesNotExist = types.ErrorAccountDoesNotExist
-	EventModuleName          = types.EventModuleName
-	CountKey                 = types.CountKey
-	AccountKeyPrefix         = types.AccountKeyPrefix
+	ModuleCdc                    = types.ModuleCdc
+	ErrorMarshal                 = types.ErrorMarshal
+	ErrorUnmarshal               = types.ErrorUnmarshal
+	ErrorUnknownMessage          = types.ErrorUnknownMessage
+	ErrorUnknownQuery            = types.ErrorUnknownQuery
+	ErrorNegativeCoins           = types.ErrorNegativeCoins
+	ErrorAccountDoesNotExist     = types.ErrorAccountDoesNotExist
+	ErrorTransferDoesNotExist    = types.ErrorTransferDoesNotExist
+	ErrorDeadlineExceeded        = types.ErrorDeadlineExceeded
+	ErrorTransferFulfilled       = types.ErrorTransferFulfilled
+	ErrorDuplicateSigner         = types.ErrorDuplicateSigner
+	ErrorHolderDoesNotExist      = types.ErrorHolderDoesNotExist
+	EventModuleName              = types.EventModuleName
+	AccountsCountKey             = types.AccountsCountKey
+	AccountKeyPrefix             = types.AccountKeyPrefix
+	TransfersCountKey            = types.TransfersCountKey
+	TransferKeyPrefix            = types.TransferKeyPrefix
+	TransferForDeadlineKeyPrefix = types.TransferForDeadlineKeyPrefix
 )
 
 type (
-	Account             = types.Account
-	Accounts            = types.Accounts
-	GenesisState        = types.GenesisState
-	MsgCreate           = types.MsgCreate
-	MsgDeposit          = types.MsgDeposit
-	QueryAccountParams  = types.QueryAccountParams
-	QueryAccountsParams = types.QueryAccountsParams
-	Keeper              = keeper.Keeper
+	Account              = types.Account
+	Accounts             = types.Accounts
+	GenesisState         = types.GenesisState
+	MsgCreate            = types.MsgCreate
+	MsgDeposit           = types.MsgDeposit
+	MsgSend              = types.MsgSend
+	MsgApprove           = types.MsgApprove
+	QueryAccountParams   = types.QueryAccountParams
+	QueryAccountsParams  = types.QueryAccountsParams
+	QueryTransferParams  = types.QueryTransferParams
+	QueryTransfersParams = types.QueryTransfersParams
+	Transfer             = types.Transfer
+	Transfers            = types.Transfers
+	Keeper               = keeper.Keeper
 )

@@ -15,6 +15,8 @@ func GetQueryCmd(cdc *codec.Codec) *cobra.Command {
 	cmd.AddCommand(flags.GetCommands(
 		queryAccount(cdc),
 		queryAccounts(cdc),
+		queryTransfer(cdc),
+		queryTransfers(cdc),
 	)...)
 
 	return cmd
@@ -29,6 +31,8 @@ func GetTxCmd(cdc *codec.Codec) *cobra.Command {
 	cmd.AddCommand(flags.PostCommands(
 		txCreate(cdc),
 		txDeposit(cdc),
+		txSend(cdc),
+		txApprove(cdc),
 	)...)
 
 	return cmd

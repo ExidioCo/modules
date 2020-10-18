@@ -1,9 +1,15 @@
 package types
 
-type GenesisState = Accounts
+type GenesisState struct {
+	Accounts  Accounts  `json:"accounts"`
+	Transfers Transfers `json:"transfers"`
+}
 
-func NewGenesisState(accounts Accounts) GenesisState {
-	return accounts
+func NewGenesisState(accounts Accounts, transfers Transfers) GenesisState {
+	return GenesisState{
+		Accounts:  accounts,
+		Transfers: transfers,
+	}
 }
 
 func DefaultGenesisState() GenesisState {

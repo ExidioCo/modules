@@ -1,13 +1,18 @@
 package types
 
 const (
-	EventTypeSetCount = "set_count"
-	EventTypeSet      = "set"
-	EventTypeDeposit  = "deposit"
+	EventTypeCreate  = "create"
+	EventTypeSend    = "send"
+	EventTypeDeposit = "deposit"
+	EventTypeApprove = "approve"
 )
 
 const (
-	AttributeKeyCount    = "count"
 	AttributeKeyIdentity = "identity"
 	AttributeKeyConsents = "consents"
+	AttributeKeyFrom     = "from"
+	AttributeKeyTo       = "to"
+	AttributeKeyCoins    = "coins"
+	AttributeKeyDeadline = "deadline"
+	AttributeKeyHolder   = "holder"
 )

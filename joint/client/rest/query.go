@@ -65,3 +65,58 @@ func queryAccounts(ctx context.CLIContext) http.HandlerFunc {
 		rest.PostProcessResponse(w, ctx, accounts)
 	}
 }
+
+func queryTransfer(ctx context.CLIContext) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		vars := mux.Vars(r)
+
+		identity, err := strconv.ParseUint(vars["identity"], 10, 64)
+		if err != nil {
+			rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())
+			return
+		}
+
+		transfer, err := common.QueryTransfer(ctx, identity)
+		if err != nil {
+			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		rest.PostProcessResponse(w, ctx, transfer)
+	}
+}
+
+func queryTransfers(ctx context.CLIContext) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		var (
+			err   error
+			query = r.URL.Query()
+			page  = 1
+			limit = 0
+		)
+
+		if query.Get("page") != "" {
+			page, err = strconv.Atoi(query.Get("page"))
+			if err != nil {
+				rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())
+				return
+			}
+		}
+
+		if query.Get("limit") != "" {
+			limit, err = strconv.Atoi(query.Get("limit"))
+			if err != nil {
+				rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())
+				return
+			}
+		}
+
+		transfers, err := common.QueryTransfers(ctx, page, limit)
+		if err != nil {
+			rest.WriteErrorResponse(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		rest.PostProcessResponse(w, ctx, transfers)
+	}
+}
