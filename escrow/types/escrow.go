@@ -19,7 +19,7 @@ type Escrow struct {
 	Signers  []sdk.AccAddress `json:"signers"`
 }
 
-func (e *Escrow) String() string {
+func (e Escrow) String() string {
 	return fmt.Sprintf(strings.TrimSpace(`
 Identity: %d
 From:     %s
