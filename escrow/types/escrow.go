@@ -22,8 +22,8 @@ type Escrow struct {
 func (e Escrow) String() string {
 	return fmt.Sprintf(strings.TrimSpace(`
 Identity: %d
-From:     %s
-To:       %d
+From:     %d
+To:       %s
 Coins:    %s
 Deadline: %s
 Signers:  %s

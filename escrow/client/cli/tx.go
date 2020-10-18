@@ -2,6 +2,7 @@ package cli
 
 import (
 	"bufio"
+	"strconv"
 	"time"
 
 	"github.com/cosmos/cosmos-sdk/client/context"
@@ -26,37 +27,22 @@ func txCreate(cdc *codec.Codec) *cobra.Command {
 				ctx    = context.NewCLIContextWithInput(buffer).WithCodec(cdc)
 			)
 
-			identity, err := cmd.Flags().GetUint64(args[0])
+			identity, err := strconv.ParseUint(args[0], 0, 64)
 			if err != nil {
 				return err
 			}
 
-			s, err := cmd.Flags().GetString(args[1])
+			to, err := sdk.AccAddressFromBech32(args[1])
 			if err != nil {
 				return err
 			}
 
-			to, err := sdk.AccAddressFromBech32(s)
+			coins, err := sdk.ParseCoins(args[2])
 			if err != nil {
 				return err
 			}
 
-			s, err = cmd.Flags().GetString(args[2])
-			if err != nil {
-				return err
-			}
-
-			coins, err := sdk.ParseCoins(s)
-			if err != nil {
-				return err
-			}
-
-			s, err = cmd.Flags().GetString(args[3])
-			if err != nil {
-				return err
-			}
-
-			deadline, err := time.Parse(time.RFC3339, s)
+			deadline, err := time.Parse(time.RFC3339, args[3])
 			if err != nil {
 				return err
 			}
@@ -81,7 +67,7 @@ func txApprove(cdc *codec.Codec) *cobra.Command {
 				ctx    = context.NewCLIContextWithInput(buffer).WithCodec(cdc)
 			)
 
-			identity, err := cmd.Flags().GetUint64(args[0])
+			identity, err := strconv.ParseUint(args[0], 0, 64)
 			if err != nil {
 				return err
 			}

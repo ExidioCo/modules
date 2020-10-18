@@ -13,7 +13,8 @@ type Keeper struct {
 	supply expected.SupplyKeeper
 }
 
-func NewKeeper(cdc *codec.Codec, key sdk.StoreKey, supply expected.SupplyKeeper) Keeper {
+func NewKeeper(cdc *codec.Codec, key sdk.StoreKey,
+	supply expected.SupplyKeeper) Keeper {
 	return Keeper{
 		cdc:    cdc,
 		key:    key,

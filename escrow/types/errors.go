@@ -14,6 +14,6 @@ var (
 	ErrorEscrowDoesNotExist  = errors.Register(ModuleName, 106, "escrow does not exist")
 	ErrorDeadlineExceeded    = errors.Register(ModuleName, 107, "deadline exceeded")
 	ErrorEscrowFulfilled     = errors.Register(ModuleName, 108, "escrow fulfilled")
-	ErrorDuplicateSigner     = errors.Register(ModuleName, 108, "duplicate signer")
-	ErrorHolderDoesNotExist  = errors.Register(ModuleName, 109, "holder does not exist")
+	ErrorDuplicateSigner     = errors.Register(ModuleName, 109, "duplicate signer")
+	ErrorHolderDoesNotExist  = errors.Register(ModuleName, 110, "holder does not exist")
 )

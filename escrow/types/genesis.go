@@ -7,5 +7,5 @@ func NewGenesisState(escrows Escrows) GenesisState {
 }
 
 func DefaultGenesisState() GenesisState {
-	return nil
+	return GenesisState{}
 }

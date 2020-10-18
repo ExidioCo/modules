@@ -14,9 +14,12 @@ type Keeper struct {
 	jointKeeper  expected.JoinKeeper
 }
 
-func NewKeeper(cdc *codec.Codec, key sdk.StoreKey) Keeper {
+func NewKeeper(cdc *codec.Codec, key sdk.StoreKey,
+	supply expected.SupplyKeeper, joint expected.JoinKeeper) Keeper {
 	return Keeper{
-		cdc: cdc,
-		key: key,
+		cdc:          cdc,
+		key:          key,
+		supplyKeeper: supply,
+		jointKeeper:  joint,
 	}
 }

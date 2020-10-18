@@ -7,5 +7,5 @@ func NewGenesisState(accounts Accounts) GenesisState {
 }
 
 func DefaultGenesisState() GenesisState {
-	return nil
+	return GenesisState{}
 }
